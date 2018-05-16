@@ -5921,3 +5921,5 @@ const val inputD13 = """0: 4
 82: 14
 88: 18
 90: 14"""
+
+const val inputD14 = "hfdlxzhv"
