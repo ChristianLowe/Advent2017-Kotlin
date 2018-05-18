@@ -20,24 +20,24 @@ private fun part1() {
     val particleRegex
             = """p=<(-?\d+),(-?\d+),(-?\d+)>, v=<(-?\d+),(-?\d+),(-?\d+)>, a=<(-?\d+),(-?\d+),(-?\d+)>""".toRegex()
 
-    val vectorList = inputD20.split('\n')
+    val particleList = inputD20.split('\n')
             .map { particleRegex.find(it)!!.groupValues }
             .map { Particle(
                     vectorFrom(it[1], it[2], it[3]),
                     vectorFrom(it[4], it[5], it[6]),
                     vectorFrom(it[7], it[8], it[9])) }
 
-    val positions = vectorList.map { it to it.position.manhattanFrom(zeroVector) }.toMap()
-    val velocities = vectorList.map { it to it.velocity.manhattanFrom(zeroVector) }.toMap()
-    val accelerations = vectorList.map { it to it.acceleration.manhattanFrom(zeroVector) }.toMap()
+    val positions = particleList.map { it to it.position.manhattanFrom(zeroVector) }.toMap()
+    val velocities = particleList.map { it to it.velocity.manhattanFrom(zeroVector) }.toMap()
+    val accelerations = particleList.map { it to it.acceleration.manhattanFrom(zeroVector) }.toMap()
 
-    val closestVector = vectorList
+    val closestVector = particleList
             .sortedBy { positions[it] }
             .sortedBy { velocities[it] }
             .sortedBy { accelerations[it] }
             .first()
 
-    println(vectorList.indexOf(closestVector))
+    println(particleList.indexOf(closestVector))
 }
 
 private fun part2() {
