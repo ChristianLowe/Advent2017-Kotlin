@@ -31,13 +31,13 @@ private fun part1() {
     val velocities = particleList.map { it to it.velocity.manhattanFrom(zeroVector) }.toMap()
     val accelerations = particleList.map { it to it.acceleration.manhattanFrom(zeroVector) }.toMap()
 
-    val closestVector = particleList
+    val closestParticle = particleList
             .sortedBy { positions[it] }
             .sortedBy { velocities[it] }
             .sortedBy { accelerations[it] }
             .first()
 
-    println(particleList.indexOf(closestVector))
+    println(particleList.indexOf(closestParticle))
 }
 
 private fun part2() {
